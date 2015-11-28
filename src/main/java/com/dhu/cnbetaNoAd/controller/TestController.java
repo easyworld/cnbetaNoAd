@@ -83,7 +83,7 @@ public class TestController {
 		return mav;
 	}
 
-	@RequestMapping("/wap/view_{id}")
+	@RequestMapping("/wap/view/{id}")
 	public ModelAndView getView(@PathVariable String id) {
 		ModelAndView mav = new ModelAndView("page");
 		// 使用jsoup 获取文章内容
@@ -99,7 +99,7 @@ public class TestController {
 			String content = doc.body().select("div.content").toString();
 			// 获取评论url
 			String comment = String.format(
-					"<a href=\"./hotcomments.htm?id=%s\">查看网友评论</a>", id);
+					"<a href=\"../hotcomments.htm?id=%s\">查看网友评论</a>", id);
 			mav.addObject("content", title + time + content + comment + "<br>"
 					+ Constants.BACK_A_HTML + "<br>");
 		} catch (IOException ioe) {
